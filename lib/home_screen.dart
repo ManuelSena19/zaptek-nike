@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:zaptek_nike/purchase_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,8 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12, width: 1.14),
-                        borderRadius: BorderRadius.circular(9.15)
+                      border: Border.all(
+                        color: Colors.black12,
+                        width: 1.14,
+                      ),
+                      borderRadius: BorderRadius.circular(9.15),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8),
@@ -51,8 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(child: Container()),
                   Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black12, width: 1.14),
-                      borderRadius: BorderRadius.circular(9.15)
+                      border: Border.all(
+                        color: Colors.black12,
+                        width: 1.14,
+                      ),
+                      borderRadius: BorderRadius.circular(9.15),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8),
@@ -213,10 +220,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         'All',
                         style: GoogleFonts.workSans(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white
-                        ),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -238,51 +244,63 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisSpacing: 15,
                 ),
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(239, 239, 239, 1),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            shoeAssets[index],
-                            height: 150,
-                          ),
-                          Text(
-                            shoeNames[index],
-                            style: GoogleFonts.workSans(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const PurchaseScreen();
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromRGBO(239, 239, 239, 1),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              shoeAssets[index],
+                              height: 150,
                             ),
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                shoePrices[index],
-                                style: GoogleFonts.workSans(
-                                  fontSize: 18,
-                                ),
+                            Text(
+                              shoeNames[index],
+                              style: GoogleFonts.workSans(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
-                              Expanded(child: Container()),
-                              Container(
-                                width: 30,
-                                height: 30,
-                                color: Colors.white,
-                                child: const Center(
-                                  child: Icon(
-                                    CupertinoIcons.arrow_right,
-                                    size: 16,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  shoePrices[index],
+                                  style: GoogleFonts.workSans(
+                                    fontSize: 18,
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Expanded(child: Container()),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  color: Colors.white,
+                                  child: const Center(
+                                    child: Icon(
+                                      CupertinoIcons.arrow_right,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
